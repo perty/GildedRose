@@ -53,7 +53,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void when_sell_date_passed_decrease_quality_to_zero()  {
+    public void never_decrease_quality_below_zero()  {
         GildedRose gildedRose = new GildedRose();
         Item item = new Item(SOME_NAME, 0, 0);
         gildedRose.addItem(item);
@@ -64,7 +64,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void update_quality_Aged_Brie_item_then_increase_by_1()  {
+    public void update_quality_of_Aged_Brie_item_then_increase_by_1()  {
         GildedRose gildedRose = new GildedRose();
         Item otherItem = getItemThatIsOfType(SpecialItems.AGED_BRIE, gildedRose.getItems());
         int initialQuality = otherItem.getQuality();
@@ -112,7 +112,7 @@ public class GildedRoseTest {
     @Test
     public void Back_stage_pass_increase_by_2_in_quality_when_ten_days_left() throws Exception {
         GildedRose gildedRose = new GildedRose();
-        int initialQuality = 10;
+        int initialQuality = 12;
         Item item = getFixedBackStagePass(gildedRose, initialQuality, 10);
 
 
@@ -125,7 +125,7 @@ public class GildedRoseTest {
     @Test
     public void Back_stage_pass_increase_by_3_in_quality_when_five_days_left() throws Exception {
         GildedRose gildedRose = new GildedRose();
-        int initialQuality = 10;
+        int initialQuality = 12;
         Item item = getFixedBackStagePass(gildedRose, initialQuality, 5);
 
         gildedRose.updateQuality();
@@ -136,7 +136,8 @@ public class GildedRoseTest {
     @Test
     public void Back_stage_pass_drops_to_zero_in_quality_when_no_days_left() throws Exception {
         GildedRose gildedRose = new GildedRose();
-        Item item = getFixedBackStagePass(gildedRose, 10, 0);
+        int initialQuality = 12;
+        Item item = getFixedBackStagePass(gildedRose, initialQuality, 0);
 
         gildedRose.updateQuality();
 
