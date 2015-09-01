@@ -1,3 +1,5 @@
+package se.crisp.edu.refactor.gildedrose;
+
 import java.util.ArrayList;
 
 public class Inventory {

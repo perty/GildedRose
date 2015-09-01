@@ -1,3 +1,4 @@
+package se.crisp.edu.refactor.gildedrose;
 
 public class Item {
     public String name;
