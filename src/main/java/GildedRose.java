@@ -15,8 +15,6 @@ public class GildedRose {
         updateQuality();
     }
 
-
-
     public void updateQuality() {
         List<Item> items = inventory.getItems();
 
@@ -71,11 +69,4 @@ public class GildedRose {
         }
     }
 
-    public List<Item> getItems() {
-        return inventory.getItems();
-    }
-
-    public void addItem(Item item) {
-        inventory.addItem(item);
-    }
 }
