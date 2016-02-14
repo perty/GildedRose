@@ -15,8 +15,8 @@ Your first task is to get everything building and running in your development en
     1. Make the current Inventory implement that interface. Use "pull up" refactoring to move methods to the interface. We tread safely as we pretend the problem is harder than it really is.
     1. Make the implementation, GildedRose, rely on the interface and get the inventory implementation injected by a constructor argument.
     1. Create a implementation of the inventory interface called TestInventory and use that in your tests.
-1. With the dependency broken, you can refactor your current tests to simplify test data setup. Why couldn't you do that first?
-1. Time to refactor the current implementation. Keep tests at green all the time. You can not change the Item class as it is owned by a Goblin. What can you do instead?
+1. With the dependency broken, you can refactor your current tests to simplify test data setup. 
+1. Time to refactor the current implementation. Keep tests at green all the time. You can not change the Item class as it is owned by a Goblin. What can you do instead? Tip: to go to object oriented solution in small steps, first create switch statements. First of all, refactor by using "flip if" so that the if condition is positive, then use a switch statement.
 1. Next, create a failing test and then implementation, for the new requirement. 
  
 Reflections
