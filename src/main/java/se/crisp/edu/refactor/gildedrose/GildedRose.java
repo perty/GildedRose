@@ -71,4 +71,7 @@ public class GildedRose {
         }
     }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
 }
