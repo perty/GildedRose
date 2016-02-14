@@ -4,13 +4,13 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static se.crisp.edu.refactor.gildedrose.GildedRose.AGED_BRIE;
+import static se.crisp.edu.refactor.gildedrose.GildedRose.BACKSTAGE_PASSES;
+import static se.crisp.edu.refactor.gildedrose.GildedRose.SULFURAS;
 
 public class GildedRoseTest {
 
     public static final String SOME_ITEM = "some old item";
-    public static final String AGED_BRIE = "Aged Brie";
-    public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
-    public static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
     public static final int SELL_IN = 20;
     public static final int QUALITY = 10;
 
@@ -70,51 +70,51 @@ public class GildedRoseTest {
 
     @Test
     public void sulfuras_legendary_item_never_has_to_be_sold() throws Exception {
-        GildedRose gildedRose = startWithItem(SULFURAS_HAND_OF_RAGNAROS, 0, QUALITY);
+        GildedRose gildedRose = startWithItem(SULFURAS, 0, QUALITY);
 
         gildedRose.updateQuality();
 
-        Item sulfura = findItemByName(gildedRose, SULFURAS_HAND_OF_RAGNAROS);
+        Item sulfura = findItemByName(gildedRose, SULFURAS);
         assertEquals(0, sulfura.getSellIn());
     }
 
     @Test
     public void backstage_passes_increases_in_quality() throws Exception {
         int initialQuality = 10;
-        GildedRose gildedRose = startWithItem(BACKSTAGE_PASS, SELL_IN, initialQuality);
+        GildedRose gildedRose = startWithItem(BACKSTAGE_PASSES, SELL_IN, initialQuality);
 
         gildedRose.updateQuality();
 
-        assertEquals(initialQuality + 1, findItemByName(gildedRose, BACKSTAGE_PASS).getQuality());
+        assertEquals(initialQuality + 1, findItemByName(gildedRose, BACKSTAGE_PASSES).getQuality());
     }
 
     @Test
     public void backstage_passes_increases_by_2_in_quality_when_10_days_or_less() throws Exception {
-        GildedRose gildedRose = startWithItem(BACKSTAGE_PASS, 10, QUALITY);
+        GildedRose gildedRose = startWithItem(BACKSTAGE_PASSES, 10, QUALITY);
 
         gildedRose.updateQuality();
 
-        Item backstage = findItemByName(gildedRose, BACKSTAGE_PASS);
+        Item backstage = findItemByName(gildedRose, BACKSTAGE_PASSES);
         assertEquals(QUALITY + 2, backstage.getQuality());
     }
 
     @Test
     public void backstage_passes_increases_by_3_in_quality_when_5_days_or_less() throws Exception {
-        GildedRose gildedRose = startWithItem(BACKSTAGE_PASS, 5, QUALITY);
+        GildedRose gildedRose = startWithItem(BACKSTAGE_PASSES, 5, QUALITY);
 
         gildedRose.updateQuality();
 
-        Item backstage = findItemByName(gildedRose, BACKSTAGE_PASS);
+        Item backstage = findItemByName(gildedRose, BACKSTAGE_PASSES);
         assertEquals(QUALITY + 3, backstage.getQuality());
     }
 
     @Test
     public void backstage_passes_quality_drops_to_0_after_the_concert() throws Exception {
-        GildedRose gildedRose = startWithItem(BACKSTAGE_PASS, -1, QUALITY);
+        GildedRose gildedRose = startWithItem(BACKSTAGE_PASSES, -1, QUALITY);
 
         gildedRose.updateQuality();
 
-        Item backstage = findItemByName(gildedRose, BACKSTAGE_PASS);
+        Item backstage = findItemByName(gildedRose, BACKSTAGE_PASSES);
         assertEquals(0, backstage.getQuality());
     }
 

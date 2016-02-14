@@ -1,10 +1,11 @@
 package se.crisp.edu.refactor.gildedrose;
 
-import java.util.List;
-
 
 public class GildedRose {
 
+    static final String AGED_BRIE = "Aged Brie";
+    static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private InventoryIf inventory;
 
     public static void main(String[] args) {
@@ -18,61 +19,72 @@ public class GildedRose {
         updateQuality();
     }
 
+    public InventoryIf getInventory() {
+        return inventory;
+    }
+
     public void updateQuality() {
-        List<Item> items = inventory.getItems();
-
-        for (int i = 0; i < items.size(); i++) {
-            if ((!"Aged Brie".equals(items.get(i).getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName())) {
-                if (items.get(i).getQuality() > 0) {
-                    if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName())) {
-                        items.get(i).setQuality(items.get(i).getQuality() - 1);
-                    }
-                }
-            } else {
-                if (items.get(i).getQuality() < 50) {
-                    items.get(i).setQuality(items.get(i).getQuality() + 1);
-
-                    if ("Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName())) {
-                        if (items.get(i).getSellIn() < 11) {
-                            if (items.get(i).getQuality() < 50) {
-                                items.get(i).setQuality(items.get(i).getQuality() + 1);
-                            }
-                        }
-
-                        if (items.get(i).getSellIn() < 6) {
-                            if (items.get(i).getQuality() < 50) {
-                                items.get(i).setQuality(items.get(i).getQuality() + 1);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName())) {
-                items.get(i).setSellIn(items.get(i).getSellIn() - 1);
-            }
-
-            if (items.get(i).getSellIn() < 0) {
-                if (!"Aged Brie".equals(items.get(i).getName())) {
-                    if (!"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName())) {
-                        if (items.get(i).getQuality() > 0) {
-                            if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName())) {
-                                items.get(i).setQuality(items.get(i).getQuality() - 1);
-                            }
-                        }
-                    } else {
-                        items.get(i).setQuality(items.get(i).getQuality() - items.get(i).getQuality());
-                    }
-                } else {
-                    if (items.get(i).getQuality() < 50) {
-                        items.get(i).setQuality(items.get(i).getQuality() + 1);
-                    }
-                }
-            }
+        for (Item item : inventory.getItems()) {
+            updateItem(item);
         }
     }
 
-    public InventoryIf getInventory() {
-        return inventory;
+    private void updateItem(Item item) {
+        updateQuality(item);
+
+        updateSellIn(item);
+    }
+
+    private void updateQuality(Item item) {
+        switch (item.getName()) {
+            case AGED_BRIE:
+            case BACKSTAGE_PASSES:
+                increaseQuality(item);
+                if (BACKSTAGE_PASSES.equals(item.getName())) {
+                    if (item.getSellIn() < 11) {
+                        increaseQuality(item);
+                    }
+                    if (item.getSellIn() < 6) {
+                        increaseQuality(item);
+                    }
+                }
+                break;
+            case SULFURAS:
+                break;
+            default:
+                decreaseQuality(item);
+        }
+    }
+
+    private void updateSellIn(Item item) {
+        if (!SULFURAS.equals(item.getName())) {
+            item.setSellIn(item.getSellIn() - 1);
+        }
+        if (item.getSellIn() < 0) {
+            handleExpired(item);
+        }
+    }
+
+    private void handleExpired(Item item) {
+        switch (item.getName()) {
+            case AGED_BRIE:
+                increaseQuality(item);
+                break;
+            case BACKSTAGE_PASSES:
+                item.setQuality(0);
+                break;
+            case SULFURAS:
+                break;
+            default:
+                decreaseQuality(item);
+        }
+    }
+
+    private void increaseQuality(Item item) {
+        item.setQuality(Math.min(50, item.getQuality() + 1));
+    }
+
+    private void decreaseQuality(Item item) {
+        item.setQuality(Math.max(0, item.getQuality() - 1));
     }
 }
