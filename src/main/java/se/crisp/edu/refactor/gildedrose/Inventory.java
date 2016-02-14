@@ -1,8 +1,9 @@
 package se.crisp.edu.refactor.gildedrose;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Inventory {
+public class Inventory implements InventoryIf {
 
     private final ArrayList<Item> items;
 
@@ -16,10 +17,12 @@ public class Inventory {
         items.add(new Item("Conjured Mana Cake", 3, 6));
     }
 
-    public ArrayList<Item> getItems() {
+    @Override
+    public List<Item> getItems() {
         return items;
     }
 
+    @Override
     public void addItem(Item item) {
         items.add(item);
     }

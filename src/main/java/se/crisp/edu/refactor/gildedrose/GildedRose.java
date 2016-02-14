@@ -5,15 +5,16 @@ import java.util.List;
 
 public class GildedRose {
 
-    private Inventory inventory = new Inventory();
+    private InventoryIf inventory;
 
     public static void main(String[] args) {
-        new GildedRose();
+        new GildedRose(new Inventory());
     }
 
-    public GildedRose() {
+    public GildedRose(InventoryIf inventory) {
         System.out.println("OMGHAI!");
 
+        this.inventory = inventory;
         updateQuality();
     }
 
@@ -71,7 +72,7 @@ public class GildedRose {
         }
     }
 
-    public Inventory getInventory() {
+    public InventoryIf getInventory() {
         return inventory;
     }
 }
