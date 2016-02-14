@@ -12,7 +12,7 @@ Your first task is to get everything building and running in your development en
 1. Add characterization tests (shield) until you have total branch coverage. Use the requirements document to find test cases. It is not possible to reach 100%, why?
 1. When you reached the good branch coverage, it is time to refactor the code. Start with dependency breaking, the sword. 
     1. Create an Inventory interface, "InventoryIf"
-    1. Make the current Inventory implement that interface. We tread safely as we pretend the problem is harder than it really is.
+    1. Make the current Inventory implement that interface. Use "pull up" refactoring to move methods to the interface. We tread safely as we pretend the problem is harder than it really is.
     1. Make the implementation, GildedRose, rely on the interface and get the inventory implementation injected by a constructor argument.
     1. Create a implementation of the inventory interface called TestInventory and use that in your tests.
 1. With the dependency broken, you can refactor your current tests to simplify test data setup. Why couldn't you do that first?
@@ -21,7 +21,12 @@ Your first task is to get everything building and running in your development en
  
 Reflections
 ------
-Note what you learned. Why was the shield used before the sword? Why refactor the current implementation before adding a new requirement?
+Note what you learned. 
+
+* Why was the shield used before the sword? 
+* Why refactor the current implementation before adding a new requirement?
+* How did you feel when the implementation was put under test? 
+* When you refactored the implementation, was readability any of your concern? Why?
 
 
 Credits
