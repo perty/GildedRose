@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" lang="en">
+<head>
+    <link href="../concordion.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Quality Degrades</title>
+</head>
+<body>
+
+<h1>Quality degradation</h1>
+<p>Once the sell by date has passed, Quality degrades twice as fast.</p>
+
+<div concordion:example="quality-degradation">
+    <h3>Example</h3>
+
+    <p>Given these items:</p>
+
+    <table concordion:execute="setUpItem(#itemName, #itemQuality)">
+        <tr>
+            <th concordion:set="#itemName">Item</th>
+            <th concordion:set="#itemQuality">Quality</th>
+        </tr>
+        <tr>
+            <td>Mushroom</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>Sarcos</td>
+            <td>7</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
