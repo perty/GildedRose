@@ -71,4 +71,7 @@ public class GildedRose {
         }
     }
 
+    public void addItem(Item item) {
+        inventory.addItem(item);
+    }
 }
