@@ -4,7 +4,7 @@ import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.runner.RunWith;
 
 @RunWith(ConcordionRunner.class)
-public class Requirements {
+public class NeverMoreThan50 extends TestUtility {
 
-    public String concordion;
+
 }

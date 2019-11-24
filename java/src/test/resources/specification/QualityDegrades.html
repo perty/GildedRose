@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:concordion="http://www.concordion.org/2007/concordion" lang="en">
 <head>
-    <link href="../concordion.css" rel="stylesheet" type="text/css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../concordion.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Quality Degrades</title>
 </head>
 <body>
@@ -15,19 +15,46 @@
 
     <p>Given these items:</p>
 
-    <table concordion:execute="setUpItem(#itemName, #itemQuality)">
+    <table concordion:execute="setUpItem(#itemName, #itemQuality, #itemSellIn)">
         <tr>
             <th concordion:set="#itemName">Item</th>
             <th concordion:set="#itemQuality">Quality</th>
+            <th concordion:set="#itemSellIn">Sell in days</th>
+            <th>Comment</th>
         </tr>
         <tr>
             <td>Mushroom</td>
-            <td>5</td>
+            <td>15</td>
+            <td>10</td>
+            <td>Will degrade one per day</td>
+        </tr>
+        <tr>
+            <td>Sarcos</td>
+            <td>16</td>
+            <td>1</td>
+            <td>Will degrade 2 per day, after one day</td>
+        </tr>
+    </table>
+
+    <p concordion:execute="updateQuality(#days)">After <span concordion:set="#days">5</span> days, then:</p>
+
+    <table concordion:execute="#item = getItem(#itemName)">
+        <thead>
+        <tr>
+            <th concordion:set="#itemName">Item</th>
+            <th concordion:assert-equals="#item.getQuality()">Quality</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Mushroom</td>
+            <td>10</td>
         </tr>
         <tr>
             <td>Sarcos</td>
             <td>7</td>
         </tr>
+        </tbody>
     </table>
 </div>
 

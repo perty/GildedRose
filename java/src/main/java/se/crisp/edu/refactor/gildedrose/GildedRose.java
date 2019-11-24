@@ -71,4 +71,16 @@ public class GildedRose {
         }
     }
 
+    public void addItem(Item item) {
+        this.inventory.addItem(item);
+    }
+
+    public Item getItem(String itemName) {
+        return this.inventory.getItems()
+                .stream()
+                .filter(i -> i.name.equals(itemName))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError(itemName + "not found"));
+    }
+
 }

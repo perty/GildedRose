@@ -17,7 +17,8 @@ feature to our system so that we can begin selling a new category of items. Firs
 <ul>
     <li> All items have a SellIn value which denotes the number of days we have to sell the item</li>
     <li> All items have a Quality value which denotes how valuable the item is</li>
-    <li> At the end of each day our system lowers both values for every item</li>
+    <li> <a concordion:run="concordion" href="LowerValues.html">
+        At the end of each day our system lowers both values for every item</a></li>
 </ul>
 
 <p>Pretty simple, right? Well this is where it gets interesting:</p>
@@ -26,12 +27,21 @@ feature to our system so that we can begin selling a new category of items. Firs
     <li><a concordion:run="concordion" href="QualityDegrades.html">Once the sell by date has passed, Quality degrades
         twice as fast</a></li>
     <li><a concordion:run="concordion" href="QualityNeverNegative.html">
-        The Quality of an item is never negative</a></li>
-    <li> "Aged Brie" actually increases in Quality the older it gets</li>
-    <li> The Quality of an item is never more than 50</li>
-    <li> "Sulfuras", being a legendary item, never has to be sold or decreases in Quality</li>
-    <li> "Backstage passes", like aged brie, increases in Quality as it's SellIn value approaches; Quality increases by
+        The Quality of an item is never negative</a>
+    </li>
+    <li><a concordion:run="concordion" href="AgedBrie.html">
+        "Aged Brie" actually increases in Quality the older it gets</a>
+    '</li>
+    <li><a concordion:run="concordion" href="NeverMoreThan50.html">
+        The Quality of an item is never more than 50</a>
+    </li>
+    <li><a concordion:run="concordion" href="Sulfuras.html">
+        "Sulfuras", being a legendary item, never has to be sold or decreases in Quality</a>
+    </li>
+    <li><a concordion:run="concordion" href="BackstagePass.html">
+        "Backstage passes", like aged brie, increases in Quality as it's SellIn value approaches; Quality increases by
         2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
+    </a>
     </li>
 </ul>
 

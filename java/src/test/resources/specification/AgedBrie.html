@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html  xmlns:concordion="http://www.concordion.org/2007/concordion" lang="en">
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Quality Never Negative</title>
+    <title>Aged Brie</title>
 </head>
 <body>
+<h1>Aged Brie just gets better</h1>
 
-<h1>Quality is never negative</h1>
-<p>No matter how long time has passed, quality is never below zero.</p>
 <div concordion:example="aged-brie">
 
     <p concordion:execute="setUpItem(#itemName, #itemQuality, #itemSellIn)">
-        Say we have an item "<span concordion:set="#itemName">Misc</span>".
+        Say we have a brie "<span concordion:set="#itemName">Aged Brie</span>".
         It has a quality of <span concordion:set="#itemQuality">10</span>
         and should be sold in <span concordion:set="#itemSellIn">5</span> days.
     </p>
     <p>
         However, after <span concordion:set="#days" >15</span>
         <span concordion:execute="updateQuality(#days)">days</span>,
-        the quality is still <span concordion:assertTrue="isAboveOrEqualToZero(#itemName)">above or equal to zero.</span>
+        the quality is still <span concordion:assertTrue="isHigher(#itemName, #itemQuality)">higher.</span>
     </p>
 </div>
 </body>
