@@ -20,6 +20,12 @@ public class InventorySteps {
         world.getGildedRose().addItem(world.getItem());
     }
 
+    @Given("an Aged Brie on the shelf with {int} and sell in 1 day")
+    public void anAgedBrieOnTheShelfWithQuality(int itemQuality) {
+        world.setItem(new Item("Aged Brie", 1, itemQuality));
+        world.getGildedRose().addItem(world.getItem());
+    }
+
     @Then("the quality will be {int}")
     public void theQualityIsDownTo(int itemQuality) {
         assertEquals(itemQuality, world.getItem().quality);
