@@ -4,5 +4,5 @@ Feature: At the end of each day our system lowers both values for every item
 
     Given an item "Barcacus" on the shelf with quality 10 and sell in 5 days
     When a day has passed
-    Then the quality is down to 9
+    Then the quality will be 9
     And sell in is 4 days
